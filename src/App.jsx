@@ -1,13 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
 import './App.css'
+import ModalLogin from './components/ModalLogin'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isLogin, setIsLogin] = useState(false)
 
+  useEffect(() => {
+    // Mengecek apakah sudah login atau belum
+    const isLoginStorage = localStorage.getItem('isLogin')
+    if(isLoginStorage){
+      setIsLogin(true)
+    }
+  }, [])
+
+  const handleLogin = (isLogin) => {
+    console.log(isLogin)
+    if(isLogin){
+      setIsLogin(true)
+      localStorage.setItem('isLogin', true)
+    }
+  }
   return (
     <>
+      {!isLogin && <ModalLogin handleLogin={handleLogin} />}
       <div className="w-full h-full bg-[#2F2F2F] fixed flex flex-col justify-between items-center py-10">
         <div className="p-6 mx-10 bg-blueku rounded-xl flex justify-center self-start">
           <h2 className="text-white text-xl">Time : 09.50</h2>
