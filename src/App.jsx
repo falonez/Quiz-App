@@ -20,7 +20,14 @@ function App() {
     if(isLoginStorage){
       setIsLogin(true)
       setQuestion(JSON.parse(localStorage.getItem('question')))
-      setCurrentQuestion(parseInt(localStorage.getItem('currentQuestion')))
+      // handle refresh page saat awal soal 
+      if(localStorage.getItem('currentQuestion') !== null){
+        setCurrentQuestion(parseInt(localStorage.getItem('currentQuestion')))
+        setCorrectAnswer(parseInt(localStorage.getItem('correctAnswer')))
+        setWrongAnswer(parseInt(localStorage.getItem('wrongAnswer')))
+        setTotalAnswer(parseInt(localStorage.getItem('totalAnswer')))
+      }
+      
     }
   }, [])
 
@@ -76,6 +83,9 @@ function App() {
       // Melanjutkan ke soal berikutnya
       setCurrentQuestion(currentQuestion + 1)
       localStorage.setItem('currentQuestion', currentQuestion + 1)
+      localStorage.setItem('correctAnswer', correctAnswer)
+      localStorage.setItem('wrongAnswer', wrongAnswer)
+      localStorage.setItem('totalAnswer', totalAnswer)
     }
   }
   return (

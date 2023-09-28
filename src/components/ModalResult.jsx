@@ -13,6 +13,10 @@ const ModalResult = ({correctAnswer, wrongAnswer, totalAnswer}) => {
         localStorage.removeItem('isLogin')
         localStorage.removeItem('question')
         localStorage.removeItem('time')
+        localStorage.removeItem('currentQuestion')
+        localStorage.removeItem('correctAnswer')
+        localStorage.removeItem('wrongAnswer')
+        localStorage.removeItem('totalAnswer')
         window.location.reload()
     }
 

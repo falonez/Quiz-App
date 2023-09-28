@@ -7,6 +7,7 @@ function Timer({ initialTime, onTimeout ,updateTime}) {
     let timerInterval;
 
     if (timeInSeconds > 0) {
+      localStorage.setItem('time', timeInSeconds)
       timerInterval = setInterval(() => {
         setTimeInSeconds((prevTime) => {
           if (prevTime === 0) {
@@ -20,7 +21,6 @@ function Timer({ initialTime, onTimeout ,updateTime}) {
         });
       }, 1000);
       updateTime(timeInSeconds)
-      localStorage.setItem('time', timeInSeconds)
     } else {
       // Panggil fungsi onTimeout jika waktu habis saat komponen dimuat
       onTimeout();
