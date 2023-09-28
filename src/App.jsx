@@ -18,6 +18,7 @@ function App() {
     // Mengecek apakah sudah login atau belum
     const isLoginStorage = localStorage.getItem('isLogin')
     if(isLoginStorage){
+      setFinish(false)
       setIsLogin(true)
       setQuestion(JSON.parse(localStorage.getItem('question')))
       // handle refresh page saat awal soal 
@@ -95,12 +96,12 @@ function App() {
       <div className="w-full h-full bg-[#2F2F2F] fixed flex flex-col justify-between items-center py-10">
         <div className="p-6 mx-10 bg-blueku rounded-xl flex justify-center self-start">
           {/* <h2 className="text-white text-xl">Time : 09.50</h2> */}
-          <Timer initialTime={time} onTimeout={() => setFinish(true)}  updateTime={setTime} isLogin={isLogin}/>
+          <Timer initialTime={time} onTimeout={() => setFinish(true)}  updateTime={setTime} isLogin={isLogin} finish={finish}/>
         </div>
         {question.length > 0 && (
           <>
             <div className="bg-blueku h-[40vh] w-full flex justify-center items-center text-[3rem] p-20 text-white">
-              <h2>{question[currentQuestion].question}</h2>
+              <div dangerouslySetInnerHTML={{ __html: question[currentQuestion].question }}></div>
             </div>
             <div className="flex w-full justify-around">
               {question[currentQuestion].incorrect_answers.map((answer, index) => (

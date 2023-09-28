@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function Timer({ initialTime, onTimeout ,updateTime, isLogin}) {
+function Timer({ initialTime, onTimeout ,updateTime, isLogin, finish}) {
   const [timeInSeconds, setTimeInSeconds] = useState(initialTime);
   
 
@@ -23,7 +23,7 @@ function Timer({ initialTime, onTimeout ,updateTime, isLogin}) {
       updateTime(timeInSeconds)
       localStorage.setItem('time', timeInSeconds)
       // Check jika sudah logout membersihkan inverval
-      if(isLogin === false){
+      if(isLogin === false || finish === true){
         clearInterval(timerInterval)
       }
     } else {
