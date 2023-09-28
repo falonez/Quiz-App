@@ -12,6 +12,7 @@ const ModalResult = ({correctAnswer, wrongAnswer, totalAnswer}) => {
         // Menghapus data di localstorage
         localStorage.removeItem('isLogin')
         localStorage.removeItem('question')
+        localStorage.removeItem('time')
         window.location.reload()
     }
 
@@ -27,7 +28,7 @@ const ModalResult = ({correctAnswer, wrongAnswer, totalAnswer}) => {
           {!detail && 
           <>
             <h1 className='text-[5rem] font-semibold text-white'>Your Score</h1>
-            <h1 className='text-[15rem] font-bold text-yellowku'>{countScore()}</h1>
+            <h1 className='text-[15rem] font-bold text-yellowku'>{countScore() || 0}</h1>
             <div className='flex flex-row gap-10'> 
             <button className='bg-yellowku rounded-md p-3 text-white font-semibold' onClick={handleDetail}>Detail Here</button>
             <button className='bg-greyku rounded-md p-3 text-white font-semibold' onClick={handleBack}>Back Here</button>

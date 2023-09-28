@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import ModalLogin from './components/ModalLogin'
 import ModalResult from './components/ModalResult'
+import Timer from './components/Timer'
 
 function App() {
   const [isLogin, setIsLogin] = useState(false)
@@ -11,6 +12,7 @@ function App() {
   const [wrongAnswer, setWrongAnswer] = useState(0)
   const [totalAnswer, setTotalAnswer] = useState(0)
   const [finish, setFinish] = useState(false)
+  const [time, setTime] = useState(parseInt(localStorage.getItem('time')) || 300)
 
   useEffect(() => {
     // Mengecek apakah sudah login atau belum
@@ -18,6 +20,7 @@ function App() {
     if(isLoginStorage){
       setIsLogin(true)
       setQuestion(JSON.parse(localStorage.getItem('question')))
+      setCurrentQuestion(parseInt(localStorage.getItem('currentQuestion')))
     }
   }, [])
 
@@ -72,16 +75,17 @@ function App() {
     }else{
       // Melanjutkan ke soal berikutnya
       setCurrentQuestion(currentQuestion + 1)
+      localStorage.setItem('currentQuestion', currentQuestion + 1)
     }
   }
-
   return (
     <>
       {!isLogin && <ModalLogin handleLogin={handleLogin} />}
       {finish && <ModalResult correctAnswer={correctAnswer} wrongAnswer={wrongAnswer} totalAnswer={totalAnswer} />}
       <div className="w-full h-full bg-[#2F2F2F] fixed flex flex-col justify-between items-center py-10">
         <div className="p-6 mx-10 bg-blueku rounded-xl flex justify-center self-start">
-          <h2 className="text-white text-xl">Time : 09.50</h2>
+          {/* <h2 className="text-white text-xl">Time : 09.50</h2> */}
+          <Timer initialTime={time} onTimeout={() => setFinish(true)}  updateTime={setTime} />
         </div>
         {question.length > 0 && (
           <>
@@ -90,7 +94,7 @@ function App() {
             </div>
             <div className="flex w-full justify-around">
               {question[currentQuestion].incorrect_answers.map((answer, index) => (
-                <div key={index} onClick={handleNextQuestion} className="bg-greyku w-1/4 mx-4 text-center text-[2rem] h-[20vh] font-semibold shadow-md flex justify-center items-center hover:bg-yellowku hover:text-white">{answer}</div>
+                <div key={index} onClick={handleNextQuestion} className="bg-greyku w-1/4 mx-4 text-center text-[2rem] h-[20vh] font-semibold shadow-md flex justify-center items-center hover:bg-yellowku hover:text-white cursor-pointer">{answer}</div>
               ))}
             </div>
             <div className="text-2xl text-white flex flex-row gap-2">Question<p>{currentQuestion+1}</p>From<p>{question.length}</p></div>

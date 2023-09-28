@@ -29,8 +29,8 @@ const ModalLogin = ({handleLogin}) => {
         <form onSubmit={handleSubmit} className=' bg-blueku p-10 rounded-xl flex justify-between flex-col gap-5'>
           <h1 className='text-white font-semibold'>Hello Welcome to Quizku</h1>
           <div className='flex flex-col gap-5'>
-          <input type="text" onChange={(e)=>setFormData({...formData, username : e.target.value})} className='rounded-md p-2 pl-4 outline-none' placeholder='Username' />
-          <input type="text" onChange={(e)=>setFormData({...formData, password : e.target.value})} className='rounded-md p-2 pl-4' placeholder='Password' />
+          <input type="text" onChange={(e)=>setFormData({...formData, username : e.target.value})} className='rounded-md p-2 pl-4 outline-yellowku outline-6 outline-offset-2 border-none' placeholder='Username' />
+          <input type="password" onChange={(e)=>setFormData({...formData, password : e.target.value})} className='rounded-md p-2 pl-4 outline-yellowku outline-6 outline-offset-2 border-none' placeholder='Password' />
           <button type="submit" className='bg-yellowku rounded-md p-3 text-white font-semibold hover:bg-yellowku/80'>Login</button>
           </div>
         </form>
