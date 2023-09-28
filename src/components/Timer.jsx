@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
-function Timer({ initialTime, onTimeout ,updateTime}) {
+function Timer({ initialTime, onTimeout ,updateTime, isLogin}) {
   const [timeInSeconds, setTimeInSeconds] = useState(initialTime);
+  
 
   useEffect(() => {
     let timerInterval;
 
     if (timeInSeconds > 0) {
-      localStorage.setItem('time', timeInSeconds)
       timerInterval = setInterval(() => {
         setTimeInSeconds((prevTime) => {
           if (prevTime === 0) {
@@ -21,11 +21,16 @@ function Timer({ initialTime, onTimeout ,updateTime}) {
         });
       }, 1000);
       updateTime(timeInSeconds)
+      localStorage.setItem('time', timeInSeconds)
+      // Check jika sudah logout membersihkan inverval
+      if(isLogin === false){
+        clearInterval(timerInterval)
+      }
     } else {
       // Panggil fungsi onTimeout jika waktu habis saat komponen dimuat
       onTimeout();
     }
-
+    
     return () => {
       clearInterval(timerInterval);
     };

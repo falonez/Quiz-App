@@ -95,7 +95,7 @@ function App() {
       <div className="w-full h-full bg-[#2F2F2F] fixed flex flex-col justify-between items-center py-10">
         <div className="p-6 mx-10 bg-blueku rounded-xl flex justify-center self-start">
           {/* <h2 className="text-white text-xl">Time : 09.50</h2> */}
-          <Timer initialTime={time} onTimeout={() => setFinish(true)}  updateTime={setTime} />
+          <Timer initialTime={time} onTimeout={() => setFinish(true)}  updateTime={setTime} isLogin={isLogin}/>
         </div>
         {question.length > 0 && (
           <>
