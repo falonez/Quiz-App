@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 
-const ModalResult = ({correctAnswer, wrongAnswer, totalAnswer}) => {
+const ModalResult = ({correctAnswer, wrongAnswer, totalAnswer, totalQuestion}) => {
     const [detail, setDetail] = useState(false)
     // menghitung Hasil score 
     const countScore = () => {
-        const score = (correctAnswer / totalAnswer) * 100
+        const score = (correctAnswer / totalQuestion) * 100
         return Math.floor(score)
     }
     

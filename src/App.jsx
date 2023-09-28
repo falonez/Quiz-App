@@ -13,6 +13,7 @@ function App() {
   const [totalAnswer, setTotalAnswer] = useState(0)
   const [finish, setFinish] = useState(false)
   const [time, setTime] = useState(parseInt(localStorage.getItem('time')) || 300)
+  const [totalQuestion , setTotalQuestion] = useState(10)
 
   useEffect(() => {
     // Mengecek apakah sudah login atau belum
@@ -43,7 +44,7 @@ function App() {
   
   const getQuestion = async () => {
     // Mengambil data pertanyaan dari API 
-    const response = await fetch('https://opentdb.com/api.php?amount=10&type=multiple')
+    const response = await fetch(`https://opentdb.com/api.php?amount=${totalQuestion}&type=multiple`)
     const data = await response.json()
     setQuestion(shuffleQuestionList(data.results))
     localStorage.setItem('question', JSON.stringify(shuffleQuestionList(data.results)))
@@ -89,23 +90,26 @@ function App() {
       localStorage.setItem('totalAnswer', totalAnswer)
     }
   }
+  console.log(correctAnswer, "ini correctAnswer")
+  console.log(wrongAnswer, "ini wrongAnswer")
+  console.log(totalAnswer, "ini totalAnswer")
   return (
     <>
       {!isLogin && <ModalLogin handleLogin={handleLogin} />}
-      {finish && <ModalResult correctAnswer={correctAnswer} wrongAnswer={wrongAnswer} totalAnswer={totalAnswer} />}
-      <div className="w-full h-full bg-[#2F2F2F] fixed flex flex-col justify-between items-center py-10">
+      {finish && <ModalResult correctAnswer={correctAnswer} wrongAnswer={wrongAnswer} totalAnswer={totalAnswer} totalQuestion={totalQuestion} />}
+      <div className="w-full h-full bg-[#2F2F2F] fixed flex flex-col justify-between items-center py-10 gap-10">
         <div className="p-6 md:mx-10 bg-blueku rounded-xl flex justify-center self-start mx-4">
           {/* <h2 className="text-white text-xl">Time : 09.50</h2> */}
           <Timer initialTime={time} onTimeout={() => setFinish(true)}  updateTime={setTime} isLogin={isLogin} finish={finish}/>
         </div>
         {question.length > 0 && (
           <>
-            <div className="bg-blueku md:h-[40vh] w-full flex justify-center items-center md:text-[3rem] md:p-20 p-4 text-white text-2xl h-[20vh] leading-relaxed">
+            <div className="bg-blueku md:h-[40vh] w-full flex justify-center items-center md:text-[3rem] md:p-20 p-4 text-white text-[1.6rem] h-auto leading-relaxed">
               <div dangerouslySetInnerHTML={{ __html: question[currentQuestion].question }}></div>
             </div>
             <div className="flex w-full justify-around md:flex-row flex-col gap-2">
               {question[currentQuestion].incorrect_answers.map((answer, index) => (
-                <div key={index} onClick={handleNextQuestion} className="bg-greyku md:w-1/4 mx-4 text-center text-[2rem] md:h-[20vh] font-semibold shadow-md flex justify-center items-center hover:bg-yellowku hover:text-white cursor-pointer"><div dangerouslySetInnerHTML={{ __html: answer }}></div></div>
+                <div key={index} onClick={handleNextQuestion} className="bg-greyku md:w-1/4 mx-4 text-center text-[1.5rem] md:text-[2rem] md:h-[20vh] font-semibold shadow-md flex justify-center items-center hover:bg-yellowku hover:text-white cursor-pointer"><div dangerouslySetInnerHTML={{ __html: answer }}></div></div>
               ))}
             </div>
             <div className="md:text-2xl text-white flex flex-row gap-2 text-xl">Question<p>{currentQuestion+1}</p>From<p>{question.length}</p></div>
