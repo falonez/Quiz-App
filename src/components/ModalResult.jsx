@@ -27,12 +27,12 @@ const ModalResult = ({correctAnswer, wrongAnswer, totalAnswer}) => {
   return (
     <div>
       <div className='fixed bg-black/60 w-full h-full flex justify-center items-center z-20'>
-        <div className='w-1/2 min-h-[70vh] h-auto pb-10 bg-blueku rounded-2xl flex justify-center flex-col items-center'>
+        <div className='md:w-1/2 md:min-h-[70vh] h-auto p-5 md:pb-10 bg-blueku rounded-2xl flex justify-center flex-col items-center'>
           {/* Skor  */}
           {!detail && 
           <>
-            <h1 className='text-[5rem] font-semibold text-white'>Your Score</h1>
-            <h1 className='text-[15rem] font-bold text-yellowku'>{countScore() || 0}</h1>
+            <h1 className='text-[2.5rem] md:text-[5rem] font-semibold text-white'>Your Score</h1>
+            <h1 className='text-[6rem] md:text-[15rem] font-bold text-yellowku'>{countScore() || 0}</h1>
             <div className='flex flex-row gap-10'> 
             <button className='bg-yellowku rounded-md p-3 text-white font-semibold' onClick={handleDetail}>Detail Here</button>
             <button className='bg-greyku rounded-md p-3 text-white font-semibold' onClick={handleBack}>Back Here</button>
@@ -40,16 +40,16 @@ const ModalResult = ({correctAnswer, wrongAnswer, totalAnswer}) => {
           </>
             }
           {/* Detail */}
-          {detail && <div className='w-full h-[60vh] bg-blueku rounded-2xl flex justify-between flex-col items-center'>
-            <h1 className='text-[3rem] font-semibold text-white'>Detail Score</h1>
+          {detail && <div className='w-full md:h-[60vh] bg-blueku rounded-2xl flex justify-between flex-col items-center gap-5'>
+            <h1 className='text-[2rem] md:text-[3rem] font-semibold text-white'>Detail Score</h1>
             <div className='flex flex-row justify-center items-center w-full'>
               <div className='grid grid-cols-2 w-full h-full text-center gap-5'>
-                <div className='w-full h-full justify-between text-[2rem] font-medium text-yellowku'>Jumlah Benar</div>
-                <div className='w-full h-full justify-between text-[2rem] font-medium text-yellowku'>{correctAnswer} Soal</div>
-                <div className='w-full h-full justify-between text-[2rem] font-medium text-yellowku'>Jumlah Salah</div>
-                <div className='w-full h-full justify-between text-[2rem] font-medium text-yellowku'>{wrongAnswer} Soal</div>
-                <div className='w-full h-full justify-between text-[2rem] font-medium text-yellowku'>Jumlah jawab</div>
-                <div className='w-full h-full justify-between text-[2rem] font-medium text-yellowku'>{totalAnswer} Soal</div>
+                <div className='w-full h-full justify-between text-[1.5rem] md:text-[2rem] font-medium text-yellowku'>Jumlah Benar</div>
+                <div className='w-full h-full justify-between text-[1.5rem] md:text-[2rem] font-medium text-yellowku'>{correctAnswer} Soal</div>
+                <div className='w-full h-full justify-between text-[1.5rem] md:text-[2rem] font-medium text-yellowku'>Jumlah Salah</div>
+                <div className='w-full h-full justify-between text-[1.5rem] md:text-[2rem] font-medium text-yellowku'>{wrongAnswer} Soal</div>
+                <div className='w-full h-full justify-between text-[1.5rem] md:text-[2rem] font-medium text-yellowku'>Jumlah jawab</div>
+                <div className='w-full h-full justify-between text-[1.5rem] md:text-[2rem] font-medium text-yellowku'>{totalAnswer} Soal</div>
               </div>
             </div>
               <button className='bg-yellowku rounded-md p-3 text-white font-semibold' onClick={handleBack}>Back Here</button>

@@ -94,21 +94,21 @@ function App() {
       {!isLogin && <ModalLogin handleLogin={handleLogin} />}
       {finish && <ModalResult correctAnswer={correctAnswer} wrongAnswer={wrongAnswer} totalAnswer={totalAnswer} />}
       <div className="w-full h-full bg-[#2F2F2F] fixed flex flex-col justify-between items-center py-10">
-        <div className="p-6 mx-10 bg-blueku rounded-xl flex justify-center self-start">
+        <div className="p-6 md:mx-10 bg-blueku rounded-xl flex justify-center self-start mx-4">
           {/* <h2 className="text-white text-xl">Time : 09.50</h2> */}
           <Timer initialTime={time} onTimeout={() => setFinish(true)}  updateTime={setTime} isLogin={isLogin} finish={finish}/>
         </div>
         {question.length > 0 && (
           <>
-            <div className="bg-blueku h-[40vh] w-full flex justify-center items-center text-[3rem] p-20 text-white">
+            <div className="bg-blueku md:h-[40vh] w-full flex justify-center items-center md:text-[3rem] md:p-20 p-4 text-white text-2xl h-[20vh] leading-relaxed">
               <div dangerouslySetInnerHTML={{ __html: question[currentQuestion].question }}></div>
             </div>
-            <div className="flex w-full justify-around">
+            <div className="flex w-full justify-around md:flex-row flex-col gap-2">
               {question[currentQuestion].incorrect_answers.map((answer, index) => (
-                <div key={index} onClick={handleNextQuestion} className="bg-greyku w-1/4 mx-4 text-center text-[2rem] h-[20vh] font-semibold shadow-md flex justify-center items-center hover:bg-yellowku hover:text-white cursor-pointer">{answer}</div>
+                <div key={index} onClick={handleNextQuestion} className="bg-greyku md:w-1/4 mx-4 text-center text-[2rem] md:h-[20vh] font-semibold shadow-md flex justify-center items-center hover:bg-yellowku hover:text-white cursor-pointer">{answer}</div>
               ))}
             </div>
-            <div className="text-2xl text-white flex flex-row gap-2">Question<p>{currentQuestion+1}</p>From<p>{question.length}</p></div>
+            <div className="md:text-2xl text-white flex flex-row gap-2 text-xl">Question<p>{currentQuestion+1}</p>From<p>{question.length}</p></div>
           </>
         )}
       </div>
