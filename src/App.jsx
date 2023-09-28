@@ -105,7 +105,7 @@ function App() {
             </div>
             <div className="flex w-full justify-around md:flex-row flex-col gap-2">
               {question[currentQuestion].incorrect_answers.map((answer, index) => (
-                <div key={index} onClick={handleNextQuestion} className="bg-greyku md:w-1/4 mx-4 text-center text-[2rem] md:h-[20vh] font-semibold shadow-md flex justify-center items-center hover:bg-yellowku hover:text-white cursor-pointer">{answer}</div>
+                <div key={index} onClick={handleNextQuestion} className="bg-greyku md:w-1/4 mx-4 text-center text-[2rem] md:h-[20vh] font-semibold shadow-md flex justify-center items-center hover:bg-yellowku hover:text-white cursor-pointer"><div dangerouslySetInnerHTML={{ __html: answer }}></div></div>
               ))}
             </div>
             <div className="md:text-2xl text-white flex flex-row gap-2 text-xl">Question<p>{currentQuestion+1}</p>From<p>{question.length}</p></div>
