@@ -68,6 +68,14 @@ Kami merekomendasikan menggunakan tools di bawah ini untuk mempermudah anda dala
 > ```bash
 > npm run dev
 > ```
+>
+> -  Account For Login
+>
+> ```bash
+> username : falonez
+> pasword : falonez
+> ```
+
 
 ## Technology
 
